@@ -1,4 +1,3 @@
-package epCOO;
 /**
  * Classe que contém informações das peças de jogo
  */
@@ -8,8 +7,12 @@ public class Piece {
      * @param color Cor da peça
      * @param isMaster Se o tipo da peça é mestre ou não
      */
-    public Piece(Color color, boolean isMaster) {
+    Color color = Color.NONE;
+    boolean isMaster;
 
+    public Piece(Color color, boolean isMaster) {
+        this.color = color;
+        this.isMaster = isMaster;
     }
 
     /**
@@ -17,7 +20,7 @@ public class Piece {
      * @return Enum Color com a cor da peça
      */
     public Color getColor() {
-        return null;
+        return this.color;
     }
 
     /**
@@ -25,7 +28,7 @@ public class Piece {
      * @return Booleano true para caso seja um mestre e false caso contrário
      */
     public boolean isMaster() {
-        return false;
+        return this.isMaster;
     }
 
     /**
@@ -33,6 +36,7 @@ public class Piece {
      * @return Booleano true para caso esteja em jogo e false caso contrário
      */
     public boolean isAlive() {
-        return false;
+        if (this.color == Color.NONE) return false;
+        else return true;
     }
 }
