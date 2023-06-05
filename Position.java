@@ -7,8 +7,11 @@ public class Position {
      * @param row Linha
      * @param col Coluna
      */
+    int row, col;
+    
     public Position(int row, int col) {
-        
+        this.row = row;
+        this.col = col;
     }
 
     /**
