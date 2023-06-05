@@ -8,7 +8,7 @@ public class Position {
      * @param col Coluna
      */
     public Position(int row, int col) {
-
+        
     }
 
     /**
@@ -16,7 +16,7 @@ public class Position {
      * @return Um valor int representando o eixo X
      */
     public int getRow() {
-        return 0;
+        return this.row;
     }
 
     /**
@@ -24,6 +24,6 @@ public class Position {
      * @return Um valor int representando o eixo Y
      */
     public int getCol() {
-        return 0;
+        return this.col;
     }
 }
