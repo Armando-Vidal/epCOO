@@ -17,6 +17,15 @@ public class Card {
     Color color;
     Position Position[];
 
+    public static Card tigre;
+    public static Card sapo;
+    public static Card carangueijo;
+    public static Card ganso;
+	public static Card dragao;
+	public static Card coelho;
+	public static Card elefante;
+	public static Card galo;
+
     public Card(String name, Color color, Position[] positions) {
         this.name = name;
         this.color = color;
@@ -53,8 +62,34 @@ public class Card {
      * @return Vetor de cartas com todas as cartas do jogo
      */
     public static Card[] createCards() {
-        Card carta1 = new Card(this.name, this.color, this.positions);
+        Position[] posicoes_tigre = {new Position(-2, 0), new Position(1, 0)};
+        tigre = new Card("tigre", Color.NONE, posicoes_tigre);
 
-        return 0;
+        Position[] posicoes_sapo = {new Position(0, -2), new Position(-1, -1), new Position(1, 1)};
+        sapo = new Card("sapo", Color.NONE, posicoes_sapo);
+
+        Position[] posicoes_carangueijo = {new Position(0, -2), new Position(-1, 0), new Position(0, 2)};
+        carangueijo = new Card("carangueijo", Color.NONE, posicoes_carangueijo);
+
+        Position[] posicoes_ganso = {new Position(-1, -1), new Position(0, -1), new Position(0, 1), new Position(1, 1)};
+        ganso = new Card("ganso", Color.NONE, posicoes_ganso);
+
+        Position[] posicoes_dragao = {new Position(-1, -2), new Position(1, -1), new Position(1, 1), new Position(-1, 2)};
+        dragao = new Card("dragao", Color.NONE, posicoes_dragao);
+
+        Position[] posicoes_coelho = {new Position(1, -1), new Position(-1, 1), new Position(0, 2)};
+        coelho = new Card("coelho", Color.NONE, posicoes_coelho);
+
+        Position[] posicoes_elefannte = {new Position(-1, -1), new Position(0, -1), new Position(-1, 1), new Position(0, 1)};
+        elefante = new Card("elefante", Color.NONE, posicoes_elefannte);
+
+        Position[] posicoes_galo = {new Position(0, -1), new Position(1, -1), new Position(0, 1), new Position(-1, 1)};
+        galo = new Card("galo", Color.NONE, posicoes_galo);
+
+        Card cartas_completas[] = {tigre, sapo, carangueijo, ganso, dragao, coelho, elefante, galo};
+
+        Card cartas[] = {};
+
+        return cartas;
     }
 }
