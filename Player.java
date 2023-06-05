@@ -1,4 +1,5 @@
-/**
+package epCOO;
+/*
  * Classe que contém informações e ações básicas relacionadas aos jogadores
  */
 public class Player {

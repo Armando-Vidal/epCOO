@@ -1,3 +1,4 @@
+package epCOO;
 /**
  * Classe contendo ações e informações sobre cada espaço (quadrado) no tabuleiro
  */

@@ -1,3 +1,4 @@
+package epCOO;
 /**
  * Exceção geral para qualquer regra burlada
  */

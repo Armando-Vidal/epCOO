@@ -1,3 +1,4 @@
+package epCOO;
 /**
  * Interface que contém métodos que serão chamados para a execução do jogo
  */

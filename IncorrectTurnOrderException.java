@@ -1,3 +1,4 @@
+package epCOO;
 /**
  * Exceção para quando se tenta jogar fora do seu turno
  */
