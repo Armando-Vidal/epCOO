@@ -2,7 +2,7 @@ package epCOO;
 
 import epCOO.Position;
 import epCOO.Color;
-
+import java.util.Random;
 /**
  * Classe que contém informações das cartas
  */
@@ -61,7 +61,21 @@ public class Card {
      * Método que cria todas as cartas do jogo, embaralha-as e devolve as 5 que serão utilizadas na partida.
      * @return Vetor de cartas com todas as cartas do jogo
      */
-    public static Card[] createCards() {
+
+    private void embaralhar(Card[] cartas){
+        int tamanho = cartas.length;
+        Random aleatorio = new Random();
+
+        for (int i = 0; i <tamanho; i++){
+            int indiceAleatorio = aleatorio.nextInt(i+1);
+
+            Card aux = cartas[indiceAleatorio];
+            cartas[indiceAleatorio] = cartas[i];
+            cartas[i] = aux;
+        }
+    }
+
+    public Card[] createCards() {
         Position[] posicoes_tigre = {new Position(-2, 0), new Position(1, 0)};
         tigre = new Card("tigre", Color.NONE, posicoes_tigre);
 
@@ -80,16 +94,17 @@ public class Card {
         Position[] posicoes_coelho = {new Position(1, -1), new Position(-1, 1), new Position(0, 2)};
         coelho = new Card("coelho", Color.NONE, posicoes_coelho);
 
-        Position[] posicoes_elefannte = {new Position(-1, -1), new Position(0, -1), new Position(-1, 1), new Position(0, 1)};
-        elefante = new Card("elefante", Color.NONE, posicoes_elefannte);
+        Position[] posicoes_elefante = {new Position(-1, -1), new Position(0, -1), new Position(-1, 1), new Position(0, 1)};
+        elefante = new Card("elefante", Color.NONE, posicoes_elefante);
 
         Position[] posicoes_galo = {new Position(0, -1), new Position(1, -1), new Position(0, 1), new Position(-1, 1)};
         galo = new Card("galo", Color.NONE, posicoes_galo);
 
         Card cartas_completas[] = {tigre, sapo, carangueijo, ganso, dragao, coelho, elefante, galo};
 
-        Card cartas[] = {};
+        embaralhar(cartas_completas);
 
-        return cartas;
+        return cartas_completas;
     }
+
 }
