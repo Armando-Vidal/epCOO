@@ -2,15 +2,22 @@ package epCOO;
 /**
  * Classe contendo ações e informações sobre cada espaço (quadrado) no tabuleiro
  */
+
 public class Spot {
     /**
      * Construtor para espaços com peça e com cor
      * @param piece Peça que inicia nesse espaço do tabuleiro
      * @param pos Posição do espaço no tabuleiro
      * @param color Cor do espaço no tabuleiro (Templo)
-     */
+    */
+    public Piece piece;
+    public Position pos;
+    public Color color;
+    
     public Spot(Piece piece, Position pos, Color color) {
-
+        this.piece = piece;
+        this.pos = pos;
+        this.color = color;
     }
 
     /**
@@ -19,7 +26,8 @@ public class Spot {
      * @param pos Posição do espaço no tabuleiro
      */
     public Spot(Piece piece, Position pos) {
-
+        this.piece = piece;
+        this.pos = pos;
     }
 
     /**
@@ -27,7 +35,7 @@ public class Spot {
      * @param pos Posição do espaço no tabuleiro
      */
     public Spot(Position pos) {
-
+        this.pos = pos;
     }
 
     /**
@@ -35,7 +43,7 @@ public class Spot {
      * @return Objeto Position contendo a posição (coordenadas) do espaço
      */
     public Position getPosition() {
-        return null;
+        return this.pos;
     }
 
     /**
@@ -43,7 +51,7 @@ public class Spot {
      * @return Objeto Piece caso tenha uma peça ou null caso o espaço esteja vazio
      */
     public Piece getPiece() {
-        return null;
+        return this.piece;
     }
 
     /**
@@ -51,7 +59,7 @@ public class Spot {
      * @return Enum Color com a cor do espaço. Caso o espaço não tenha cor, o valor do enum será NONE
      */
     Color getColor() {
-        return null;
+        return this.color;
     }
 
     /**
@@ -59,7 +67,10 @@ public class Spot {
      * @return Um booleano que indica se o objeto representa uma posição válida no tabuleiro
      */
     public boolean isValid() {
-        return false;
+        if(this.pos.row > 2 || this.pos.row < -2 || this.pos.col > 2 || this.pos.col < -2){
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -68,13 +79,21 @@ public class Spot {
      * @exception IllegalMovementException Caso o espaço já esteja ocupado por uma peça da mesma cor
      */
     protected void occupySpot(Piece piece) throws IllegalMovementException {
-
+        try{
+            if(this.piece.color == piece.color){
+                throw new IllegalMovementException("Esse lugar está ocupado por um aliado! Escolha outro!");
+            }else{
+                this.piece = piece;
+            }
+        }catch(IllegalMovementException erro){
+            System.out.println(erro.getMessage());
+        }
     }
 
     /**
      * Método que "libera" o espaço atual, ou seja, deixa-o vazio
      */
     protected void releaseSpot() {
-
+        this.piece = null;
     }
 }
