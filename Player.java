@@ -6,7 +6,7 @@ public class Player
 { 
     
     private Card[] cards;
-    private Color color;
+    private Color pieceColor;
     private String name;
     private Card card1;
     private Card card2;
@@ -19,7 +19,7 @@ public class Player
     public Player(String name, Color pieceColor, Card[] cards)
     {
         this.name = name;
-        this.PieceColor = PieceColor;
+        this.pieceColor = pieceColor;
         this.cards = cards;
     }
 
@@ -33,7 +33,7 @@ public class Player
     public Player(String name, Color pieceColor, Card card1, Card card2)
     {
         this.name = name;
-        this.pieceColor = PieceColor;
+        this.pieceColor = pieceColor;
         this.card1 = card1;
         this.card2 = card2;
     }
@@ -51,9 +51,9 @@ public class Player
      * Método que devolve a cor das peças do jogador
      * @return Enum Color com a cor das peças do jogador
      */
-    public Color getPieceColor()
+    public Color getpieceColor()
     {
-        return this.Color;
+        return this.pieceColor;
     }
 
     /**
@@ -62,7 +62,7 @@ public class Player
      */
     public Card[] getCards()
     {
-        return this.Card[];
+        return this.cards;
     }
 
     /**
