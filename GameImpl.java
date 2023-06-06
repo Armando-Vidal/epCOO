@@ -25,7 +25,7 @@ public class GameImpl implements Game {
         }
     }
 
-    
+
 }
 
 
@@ -87,6 +87,9 @@ public class GameImpl implements Game {
      * @param color Cor das peças do jogador que confere a condição de vitória
      * @return Um booleano true para caso esteja em condições de vencer e false caso contrário
      */
+
+     // LEMBRETE : POSIÇOES DE CARTAS DEVEM SER SOMADAS AS POSICOES ATUAIS 
+     
     public boolean checkVictory(Color color){
         return false;
     }
