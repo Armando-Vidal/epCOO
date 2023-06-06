@@ -73,21 +73,13 @@ public class Player
      */
     protected void swapCard(Card oldCard, Card newCard) throws InvalidCardException
     {
-        try
-        {
-            if(!oldCard.equals(card1) && !oldCard.equals(card2))
-            {
+       if(!oldCard.equals(card1) && !oldCard.equals(card2))
                 throw new InvalidCardException("Amigão você não tem essa carta, escolha outra");
-            }else
-            {
+            else{
                 if(oldCard.equals(card1))
                     this.card1 = newCard;
                 else
                     this.card2 = newCard;
             }
-        }catch(IllegalMovementException erro){
-            System.out.println(erro.getMessage());
-        }
-
     }
 }
