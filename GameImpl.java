@@ -6,24 +6,56 @@ public class GameImpl implements Game {
      * @param position Posição do tabuleiro
      * @return O enum Color que representa a cor da posição
      */
-    public final int length = 5;
+    public final int LENGTH = 5;
 
-    Position[][] posicoes = new Position[length][length]; //valor -2
-    Spot[][] spots = new Spot[length][length]; //valor -2
+    Position[][] posicoes = new Position[LENGTH][LENGTH]; //valor -2
+    Spot[][] spots = new Spot[LENGTH][LENGTH]; //valor -2
+    Piece[] pecas = new Piece[10];
 
     public void init(){
+    
+    //todas as casas
 
-    for (int i=0; i < length; i++){
-        for (int j=0; j < length; j++){
+    for (int i=0; i < LENGTH; i++){
+        for (int j=0; j < LENGTH; j++){
             posicoes [i][j] = new Position(i-2, j-2);
         }
     }
+    
+    //peças azuis
 
-    for (int i=0; i < length; i++){
-        for (int j=0; j < length; j++){
-            spots [i][j] = new Spot(posicoes[i][j]);
+    for (int i=0; i<5; i++){
+        if (i == 2) pecas[i] = new Piece(Color.BLUE, true);
+        else pecas[i] = new Piece(Color.BLUE, false);
+    }
+
+    //peças vermelhas
+
+    for (int i=5; i<10; i++){
+        if (i == 7) pecas[i] = new Piece(Color.RED, true);
+        else pecas[i] = new Piece(Color.RED, false);
+    }
+
+    //todos os spots 
+    int index =0;
+    for (int i=0; i < LENGTH; i++){
+        for (int j=0; j < LENGTH; j++){
+            if(i ==0) {
+                spots[i][j] = new Spot(pecas[index], posicoes[i][j]);//spots com peças
+                index++;
+            }
+            else if(i == 4){
+                spots[i][j] = new Spot(pecas[index], posicoes[i][j]);//spots com peças
+                index++;
+            }
+            else
+                spots [i][j] = new Spot(posicoes[i][j]);
         }
     }
+    spots [0][2] = new Spot(pecas[2], posicoes[0][2], Color.BLUE); // templo azul
+    spots [4][2] = new Spot(pecas[7], posicoes[4][2], Color.RED);  // templo vermelho
+
+    
 
 
 }
@@ -89,7 +121,7 @@ public class GameImpl implements Game {
      */
 
      // LEMBRETE : POSIÇOES DE CARTAS DEVEM SER SOMADAS AS POSICOES ATUAIS 
-     
+
     public boolean checkVictory(Color color){
         return false;
     }
