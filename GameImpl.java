@@ -1,15 +1,24 @@
 package epCOO;
-/**
- * Interface que contém métodos que serão chamados para a execução do jogo
- */
+
 public class GameImpl implements Game {
     /**
      * Método que devolve a cor da posição do tabuleiro. Se possui uma cor, significa que é um templo. Caso contrário, é um espaço normal
      * @param position Posição do tabuleiro
      * @return O enum Color que representa a cor da posição
      */
+    public final int length = 5;
+
+    Position[][] posicoes = new Position[length][length];
+
+    for (int i=0; i < length; i++){
+        for (int j=0; j < length; j++){
+            
+        }}
+
+
     public Color getSpotColor(Position position){
-        return null;
+        Spot spot = new Spot(position);
+        return spot.getColor();
     }
 
     /**
@@ -18,7 +27,8 @@ public class GameImpl implements Game {
      * @return Um objeto Piece que representa a peça na posição indicada. Se não tiver peça, devolve null
      */
     public Piece getPiece(Position position){
-        return null;
+        Spot spot = new Spot(position);
+        return spot.piece;
     }
 
     /**
