@@ -62,9 +62,11 @@ public class Card {
      * @return Vetor de cartas com todas as cartas do jogo
      */
 
-    private void embaralhar(Card[] cartas){
+    private Card[] embaralhar(Card[] cartas){
         int tamanho = cartas.length;
         Random aleatorio = new Random();
+
+        Card[] cartasJogo = new Card[5];
 
         for (int i = 0; i <tamanho; i++){
             int indiceAleatorio = aleatorio.nextInt(i+1);
@@ -73,7 +75,13 @@ public class Card {
             cartas[indiceAleatorio] = cartas[i];
             cartas[i] = aux;
         }
+
+        for (int j = 0; j< cartasJogo.length; j++) 
+            cartasJogo[j] = cartas[j];
+        
+        return cartasJogo;
     }
+
 
     public Card[] createCards() {
         Position[] posicoes_tigre = {new Position(-2, 0), new Position(1, 0)};
@@ -102,9 +110,9 @@ public class Card {
 
         Card cartas_completas[] = {tigre, sapo, carangueijo, ganso, dragao, coelho, elefante, galo};
 
-        embaralhar(cartas_completas);
+        Card cartas[] = embaralhar(cartas_completas);
 
-        return cartas_completas;
+        return cartas;
     }
 
 }
