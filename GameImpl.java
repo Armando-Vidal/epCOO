@@ -16,7 +16,7 @@ public class GameImpl implements Game {
     
     //todas as casas
 
-    for (int i=0; i < LENGTH; i++){
+     for (int i=0; i < LENGTH; i++){
         for (int j=0; j < LENGTH; j++){
             posicoes [i][j] = new Position(i-2, j-2);
         }
@@ -24,9 +24,9 @@ public class GameImpl implements Game {
     
     //peças azuis
 
-    for (int i=0; i<5; i++){
-        if (i == 2) pecas[i] = new Piece(Color.BLUE, true);
-        else pecas[i] = new Piece(Color.BLUE, false);
+        for (int i=0; i<5; i++){
+            if (i == 2) pecas[i] = new Piece(Color.BLUE, true);
+            else pecas[i] = new Piece(Color.BLUE, false);
     }
 
     //peças vermelhas
@@ -62,8 +62,7 @@ public class GameImpl implements Game {
 
 
     public Color getSpotColor(Position position){
-        Spot spot = new Spot(position);
-        return spot.getColor();
+        return null;
     }
 
     /**
