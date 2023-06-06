@@ -13,7 +13,7 @@ public class Card {
      */
     String name;
     Color color;
-    Position Position[];
+    Position positions[];
 
     public static Card tigre;
     public static Card sapo;
@@ -27,7 +27,10 @@ public class Card {
     public Card(String name, Color color, Position[] positions) {
         this.name = name;
         this.color = color;
-        this.Position = positions;
+
+        for (int i=0; i<positions.length; i++)
+            this.positions[i] = positions[i];
+            
     }
 
     /**
@@ -52,7 +55,7 @@ public class Card {
      * @return Um array de Position contendo todas as possíveis posições de movimento em relação ao ponto de origem
      */
     public Position[] getPositions() {
-        return this.Position;
+        return this.positions;
     }
 
     /**

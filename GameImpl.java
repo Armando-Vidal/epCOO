@@ -8,12 +8,25 @@ public class GameImpl implements Game {
      */
     public final int length = 5;
 
-    Position[][] posicoes = new Position[length][length];
+    Position[][] posicoes = new Position[length][length]; //valor -2
+    Spot[][] spots = new Spot[length][length]; //valor -2
+
+    public void init(){
 
     for (int i=0; i < length; i++){
         for (int j=0; j < length; j++){
-            
-        }}
+            posicoes [i][j] = new Position(i-2, j-2);
+        }
+    }
+
+    for (int i=0; i < length; i++){
+        for (int j=0; j < length; j++){
+            spots [i][j] = new Spot(posicoes[i][j]);
+        }
+    }
+
+    
+}
 
 
     public Color getSpotColor(Position position){
