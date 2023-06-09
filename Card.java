@@ -86,28 +86,28 @@ public class Card {
 
     public Card[] createCards() {
         Position[] posicoes_tigre = {new Position(-2, 0), new Position(1, 0)};
-        tigre = new Card("tigre", Color.NONE, posicoes_tigre);
+        tigre = new Card("tigre", Color.BLUE, posicoes_tigre);
 
         Position[] posicoes_sapo = {new Position(0, -2), new Position(-1, -1), new Position(1, 1)};
-        sapo = new Card("sapo", Color.NONE, posicoes_sapo);
+        sapo = new Card("sapo", Color.RED, posicoes_sapo);
 
         Position[] posicoes_carangueijo = {new Position(0, -2), new Position(-1, 0), new Position(0, 2)};
-        carangueijo = new Card("carangueijo", Color.NONE, posicoes_carangueijo);
+        carangueijo = new Card("carangueijo", Color.BLUE, posicoes_carangueijo);
 
         Position[] posicoes_ganso = {new Position(-1, -1), new Position(0, -1), new Position(0, 1), new Position(1, 1)};
-        ganso = new Card("ganso", Color.NONE, posicoes_ganso);
+        ganso = new Card("ganso", Color.BLUE, posicoes_ganso);
 
         Position[] posicoes_dragao = {new Position(-1, -2), new Position(1, -1), new Position(1, 1), new Position(-1, 2)};
-        dragao = new Card("dragao", Color.NONE, posicoes_dragao);
+        dragao = new Card("dragao", Color.RED, posicoes_dragao);
 
         Position[] posicoes_coelho = {new Position(1, -1), new Position(-1, 1), new Position(0, 2)};
-        coelho = new Card("coelho", Color.NONE, posicoes_coelho);
+        coelho = new Card("coelho", Color.BLUE, posicoes_coelho);
 
         Position[] posicoes_elefante = {new Position(-1, -1), new Position(0, -1), new Position(-1, 1), new Position(0, 1)};
-        elefante = new Card("elefante", Color.NONE, posicoes_elefante);
+        elefante = new Card("elefante", Color.RED, posicoes_elefante);
 
         Position[] posicoes_galo = {new Position(0, -1), new Position(1, -1), new Position(0, 1), new Position(-1, 1)};
-        galo = new Card("galo", Color.NONE, posicoes_galo);
+        galo = new Card("galo", Color.RED, posicoes_galo);
 
         Card cartas_completas[] = {tigre, sapo, carangueijo, ganso, dragao, coelho, elefante, galo};
 
