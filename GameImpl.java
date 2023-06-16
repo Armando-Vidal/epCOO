@@ -133,7 +133,7 @@ public class GameImpl implements Game {
     }
     public void moveAux (Position cardMove, Position currentPos){
         Position movimento = new Position (currentPos.getRow() + cardMove.getRow(), currentPos.getCol()+currentPos.getCol());
-        spots[cardMove.getRow()+2][cardMove.getCol()+2] = new Spot(piecetoMove, movimento);
+        spots[currentPos.getRow() + cardMove.getRow()+2][currentPos.getRow() + cardMove.getCol()+2] = new Spot(piecetoMove, movimento);
     }
     /**
      * Método que move uma peça
@@ -155,8 +155,10 @@ public class GameImpl implements Game {
         else if (currentPos.getCol() + cardMove.getCol() > 2 || currentPos.getCol() + cardMove.getCol() < -2)
             throw new IllegalMovementException ("A posição excede a coluna");
         else{
+
             Piece pieceToMove = spots[currentPos.getRow()+2][currentPos.getCol()+2].getPiece();
-            Spot spotToGo = spots[cardMove.getRow()+2][cardMove.getCol()+2];
+            Spot spotToGo = spots[currentPos.getRow() + cardMove.getRow()+2][currentPos.getRow() + cardMove.getCol()+2];
+
             if (spotToGo.getPosition().getRow() > 2 || spotToGo.getPosition().getRow() < -2)
                 throw new InvalidPieceException("Essa peça não está no tabuleiro");
             if (spotToGo.getPosition().getCol() > 2 || spotToGo.getPosition().getCol() < -2)
@@ -183,7 +185,7 @@ public class GameImpl implements Game {
                         else {
                             spotToGo.getPiece().kill();
                             moveAux(cardMove, currentPos);
-                            
+
                             redPlayer.swapCard(card, cartaDaMesa);
                             turno = Color.BLUE;
                         }
@@ -195,8 +197,6 @@ public class GameImpl implements Game {
                 }
             }
         }
-
-        //TODO
     }
 
     /**
@@ -210,6 +210,13 @@ public class GameImpl implements Game {
      // LEMBRETE : POSIÇOES DE CARTAS DEVEM SER SOMADAS AS POSICOES ATUAIS 
 
     public boolean checkVictory(Color color){
+        for (int i = 0; i < pecas.length; i++)
+            if (pecas[i].isMaster() && pecas[i].isDead() && !pecas[i].getColor().equals(color))
+                return true;
+            for (int j = 0; j <LENGTH; j++)
+                if (!spots[i][j].getPiece().getColor().equals(spots[i][j].getColor()))
+                    return true;
+        
         return false;
     }
 
