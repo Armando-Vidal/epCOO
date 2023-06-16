@@ -17,6 +17,8 @@ public class GameImpl implements Game {
     String nomeAzul = new String();
     String nomeVermelho = new String();
     Cards [] novoDeck = new Card(); // indices 0 e 1 correspondem às cartas do azul, 2 e 3 às do vermelho e índice 4 é a carta da mesa
+    Card cartaDaMesa = novoDeck[4];
+    Color turno = novoDeck[4].getColor();
 
     Player bluePlayer = new Player("Jogador Azul", Color.BLUE, novoDeck[0], novoDeck[1]);
     Player redPlayer = new Player ("Jogador Vermelho", Color.RED, novoDeck[2], novoDeck[3]);
@@ -111,7 +113,7 @@ public class GameImpl implements Game {
      * @return Um objeto Card que representa a carta na mesa
      */
     public Card getTableCard(){
-        return this.novoDeck[4];
+        return this.cartaDaMesa;
     }
 
     /**
@@ -129,7 +131,10 @@ public class GameImpl implements Game {
     public Player getBluePlayer(){
         return this.bluePlayer;
     }
-
+    public void moveAux (Position cardMove, Position currentPos){
+        Position movimento = new Position (currentPos.getRow() + cardMove.getRow(), currentPos.getCol()+currentPos.getCol());
+        spots[cardMove.getRow()+2][cardMove.getCol()+2] = new Spot(piecetoMove, movimento);
+    }
     /**
      * Método que move uma peça
      * @param card A carta de movimento que será usada
@@ -142,12 +147,49 @@ public class GameImpl implements Game {
     public void makeMove(Card card, Position cardMove, Position currentPos) throws 
     IncorrectTurnOrderException, IllegalMovementException, InvalidCardException, InvalidPieceException{
 
-        Position [] cardPositions = card.getPositions(); //exception
-
-        pieceToMove = spots[currentPos.getRow()+2][currentPos.getCol()+2].getPiece();
-        //currentSpot = spots[currentPos.getRow()+2][currentPos.getCol()+2];
-        spotToGo = spots[cardMove.getRow()+2][cardMove.getCol()+2];
-        spotToGO = new Spot(piecetoMove, cardMove);
+        // Position [] cardPositions = card.getPositions(); //exception
+        
+        
+        if (currentPos.getRow() + cardMove.getRow() > 2 || currentPos.getRow() + cardMove.getRow() < -2)
+            throw new IllegalMovementException ("A posição excede a linha");
+        else if (currentPos.getCol() + cardMove.getCol() > 2 || currentPos.getCol() + cardMove.getCol() < -2)
+            throw new IllegalMovementException ("A posição excede a coluna");
+        else{
+            Piece pieceToMove = spots[currentPos.getRow()+2][currentPos.getCol()+2].getPiece();
+            Spot spotToGo = spots[cardMove.getRow()+2][cardMove.getCol()+2];
+            if (spotToGo.getPosition().getRow() > 2 || spotToGo.getPosition().getRow() < -2)
+                throw new InvalidPieceException("Essa peça não está no tabuleiro");
+            if (spotToGo.getPosition().getCol() > 2 || spotToGo.getPosition().getCol() < -2)
+                throw new InvalidPieceException("Essa peça não está no tabuleiro");
+            else {
+                if (spotToGo.getPiece().getColor().equals(pieceToMove.getColor()))
+                    throw new IllegalMovementException("Já tem uma peça dessa cor nessa posição");
+                else{ 
+                
+                    if (pieceToMove.getColor().equals(Color.BLUE) && turno.equals(Color.BLUE)){
+                        if (bluePlayer.getCards()[0] != card || bluePlayer.getCards()[1] != card)
+                            throw new InvalidCardException("Você não tem a carta na sua mão");
+                        else { moveAux(cardMove, currentPos);
+                            bluePlayer.swapCard(card, cartaDaMesa);
+                            turno = Color.RED;
+                    }
+            }
+                    if (pieceToMove.getColor().equals(Color.RED) && turno.equals(Color.RED)){
+                        if (redPlayer.getCards()[0] != card || redPlayer.getCards()[1] != card)
+                            throw new InvalidCardException("Você não tem a carta na sua mão");
+                        else {
+                            moveAux(cardMove, currentPos);
+                            redPlayer.swapCard(card, cartaDaMesa);
+                            turno = Color.BLUE;
+                        }
+            }
+            else if (pieceToMove.getColor().equals(Color.BLUE) && turno.equals(Color.RED))
+                throw new IncorrectTurnOrderException ("Não é o turno do azul");
+            else if (pieceToMove.getColor().equals(Color.RED) && turno.equals(Color.BLUE))
+                throw new IncorrectTurnOrderException ("Não é o turno do vermelho");
+                }
+            }
+        }
 
         //TODO
     }

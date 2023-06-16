@@ -8,8 +8,6 @@ public class Player
     private Card[] cards;
     private Color pieceColor;
     private String name;
-    private Card card1;
-    private Card card2;
     /**
      * Construtor que define informações básicas do jogador
      * @param name Nome do jogador
@@ -34,8 +32,8 @@ public class Player
     {
         this.name = name;
         this.pieceColor = pieceColor;
-        this.card1 = card1;
-        this.card2 = card2;
+        this.cards[0] = card1;
+        this.cards[1] = card2;
     }
 
     /**
