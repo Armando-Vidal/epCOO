@@ -19,7 +19,7 @@ public class Player
     public Player(String name, Color pieceColor, Card[] cards)
     {
         this.name = name;
-        this.PieceColor = PieceColor;
+        this.color = pieceColor;
         this.cards = cards;
     }
 
@@ -33,7 +33,7 @@ public class Player
     public Player(String name, Color pieceColor, Card card1, Card card2)
     {
         this.name = name;
-        this.pieceColor = PieceColor;
+        this.color = pieceColor;
         this.card1 = card1;
         this.card2 = card2;
     }
@@ -53,7 +53,7 @@ public class Player
      */
     public Color getPieceColor()
     {
-        return this.Color;
+        return this.color;
     }
 
     /**
@@ -62,7 +62,7 @@ public class Player
      */
     public Card[] getCards()
     {
-        return this.Card[];
+        return this.cards;
     }
 
     /**

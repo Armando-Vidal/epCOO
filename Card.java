@@ -1,7 +1,5 @@
 package epCOO;
 
-import epCOO.Position;
-import epCOO.Color;
 import java.util.Random;
 /**
  * Classe que contém informações das cartas
