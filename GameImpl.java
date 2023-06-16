@@ -67,11 +67,11 @@ public class GameImpl implements Game {
     for (int i=0; i < LENGTH; i++){
         for (int j=0; j < LENGTH; j++){
             if(i ==0) {
-                spots[i][j] = new Spot(pecas[index], posicoes[i][j]);//spots com peças
+                spots[i][j] = new Spot(pecas[index], posicoes[i][j]);//spots com peças azuis
                 index++;
             }
             else if(i == 4){
-                spots[i][j] = new Spot(pecas[index], posicoes[i][j]);//spots com peças
+                spots[i][j] = new Spot(pecas[index], posicoes[i][j]);//spots com peças vermelhas
                 index++;
             }
             else
@@ -102,7 +102,7 @@ public class GameImpl implements Game {
     public Piece getPiece(Position position){
         int a = position.getRow();
         int b = position.getCol();
-        Color piece = spots[a+2][b+2].getPiece();
+        Piece piece = spots[a+2][b+2].getPiece();
         return piece;
     }
 
@@ -111,7 +111,7 @@ public class GameImpl implements Game {
      * @return Um objeto Card que representa a carta na mesa
      */
     public Card getTableCard(){
-        return novoDeck[4];
+        return this.novoDeck[4];
     }
 
     /**
@@ -119,7 +119,7 @@ public class GameImpl implements Game {
      * @return Um objeto Player que representa o jogador vermelho
      */
     public Player getRedPlayer(){
-        return  redPlayer;
+        return this.redPlayer;
     }
 
     /**
@@ -127,12 +127,11 @@ public class GameImpl implements Game {
      * @return Um objeto Player que representa o jogador azul
      */
     public Player getBluePlayer(){
-        return bluePlayer;
+        return this.bluePlayer;
     }
 
     /**
      * Método que move uma peça
-     * @param piece A peça que irá mover
      * @param card A carta de movimento que será usada
      * @param position A posição da carta para onde a peça irá se mover
      * @exception IncorrectTurnOrderException Caso não seja a vez de um jogador fazer um movimento
@@ -140,7 +139,18 @@ public class GameImpl implements Game {
      * @exception InvalidCardException Caso uma carta que não está na mão do jogador seja usada
      * @exception InvalidPieceException Caso uma peça que não está no tabuleiro seja usada
      */
-    public void makeMove(Card card, Position cardMove, Position currentPos) throws IncorrectTurnOrderException, IllegalMovementException, InvalidCardException, InvalidPieceException{}
+    public void makeMove(Card card, Position cardMove, Position currentPos) throws 
+    IncorrectTurnOrderException, IllegalMovementException, InvalidCardException, InvalidPieceException{
+
+        Position [] cardPositions = card.getPositions(); //exception
+
+        pieceToMove = spots[currentPos.getRow()+2][currentPos.getCol()+2].getPiece();
+        //currentSpot = spots[currentPos.getRow()+2][currentPos.getCol()+2];
+        spotToGo = spots[cardMove.getRow()+2][cardMove.getCol()+2];
+        spotToGO = new Spot(piecetoMove, cardMove);
+
+        //TODO
+    }
 
     /**
      * Método que confere se um jogador de uma determinada cor venceu o jogo. Critérios de vitória:
