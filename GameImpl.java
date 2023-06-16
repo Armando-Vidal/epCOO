@@ -6,15 +6,30 @@ public class GameImpl implements Game {
      * @param position Posição do tabuleiro
      * @return O enum Color que representa a cor da posição
      */
-    public GameImpl(){}
-    public GameImpl(String nomeAzul, String nomeVermelho){}
-    public GameImpl(String nomeAzul, String nomeVermelho, Cards[] novoDeck){}
+
 
     public final int LENGTH = 5;
 
     Position[][] posicoes = new Position[LENGTH][LENGTH]; //valor -2
     Spot[][] spots = new Spot[LENGTH][LENGTH]; //valor -2
     Piece[] pecas = new Piece[10];
+
+    String nomeAzul = new String();
+    String nomeVermelho = new String();
+    Cards [] novoDeck = new Card();
+
+    public GameImpl(){}
+    public GameImpl(String nomeAzul, String nomeVermelho){
+        this.nomeAzul = nomeAzul;
+        this.nomeVermelho = nomeVermelho;
+    }
+    public GameImpl(String nomeAzul, String nomeVermelho, Cards[] novoDeck){
+        this.nomeAzul = nomeAzul;
+        this.nomeVermelho = nomeVermelho;
+        for (int i =0; i <novoDeck.length; i++)
+            this.novoDeck[i] = novoDeck[i];
+    }
+
 
     public void init(){
     
