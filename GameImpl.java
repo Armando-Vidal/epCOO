@@ -164,21 +164,26 @@ public class GameImpl implements Game {
             else {
                 if (spotToGo.getPiece().getColor().equals(pieceToMove.getColor()))
                     throw new IllegalMovementException("Já tem uma peça dessa cor nessa posição");
-                else{ 
+                else { 
                 
                     if (pieceToMove.getColor().equals(Color.BLUE) && turno.equals(Color.BLUE)){
-                        if (bluePlayer.getCards()[0] != card || bluePlayer.getCards()[1] != card)
+                        if (bluePlayer.getCards()[0] != card && bluePlayer.getCards()[1] != card)
                             throw new InvalidCardException("Você não tem a carta na sua mão");
-                        else { moveAux(cardMove, currentPos);
+                        else {
+                            spotToGo.getPiece().kill();
+                            moveAux(cardMove, currentPos);
+
                             bluePlayer.swapCard(card, cartaDaMesa);
                             turno = Color.RED;
                     }
             }
                     if (pieceToMove.getColor().equals(Color.RED) && turno.equals(Color.RED)){
-                        if (redPlayer.getCards()[0] != card || redPlayer.getCards()[1] != card)
+                        if (redPlayer.getCards()[0] != card && redPlayer.getCards()[1] != card)
                             throw new InvalidCardException("Você não tem a carta na sua mão");
                         else {
+                            spotToGo.getPiece().kill();
                             moveAux(cardMove, currentPos);
+                            
                             redPlayer.swapCard(card, cartaDaMesa);
                             turno = Color.BLUE;
                         }
