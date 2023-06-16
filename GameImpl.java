@@ -119,7 +119,7 @@ public class GameImpl implements Game {
      * @return Um objeto Player que representa o jogador vermelho
      */
     public Player getRedPlayer(){
-        return null;
+        return  redPlayer;
     }
 
     /**
@@ -127,7 +127,7 @@ public class GameImpl implements Game {
      * @return Um objeto Player que representa o jogador azul
      */
     public Player getBluePlayer(){
-        return null;
+        return bluePlayer;
     }
 
     /**
