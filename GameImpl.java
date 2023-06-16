@@ -62,7 +62,10 @@ public class GameImpl implements Game {
 
 
     public Color getSpotColor(Position position){
-        return null;
+        int a = position.getRow();
+        int b = position.getCol();
+        Color color = spots[a][b].getColor();
+        return color;
     }
 
     /**
@@ -71,8 +74,10 @@ public class GameImpl implements Game {
      * @return Um objeto Piece que representa a peça na posição indicada. Se não tiver peça, devolve null
      */
     public Piece getPiece(Position position){
-        Spot spot = new Spot(position);
-        return spot.piece;
+        int a = position.getRow();
+        int b = position.getCol();
+        Color piece = spots[a][b].getPiece();
+        return piece;
     }
 
     /**
