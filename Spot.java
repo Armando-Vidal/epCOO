@@ -58,19 +58,8 @@ public class Spot {
      * Método que devolve a cor do espaço
      * @return Enum Color com a cor do espaço. Caso o espaço não tenha cor, o valor do enum será NONE
      */
-    Color getColor() {
+    public Color getColor() {
         return this.color;
-    }
-
-    /**
-     * Método que verifica se a posição é válida no tabuleiro
-     * @return Um booleano que indica se o objeto representa uma posição válida no tabuleiro
-     */
-    public boolean isValid() {
-        if(this.pos.row > 2 || this.pos.row < -2 || this.pos.col > 2 || this.pos.col < -2){
-            return false;
-        }
-        return true;
     }
 
     /**

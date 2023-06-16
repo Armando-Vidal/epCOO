@@ -10,6 +10,7 @@ public class Piece {
      */
     Color color = Color.NONE;
     boolean isMaster;
+    boolean isDead = false;
 
     public Piece(Color color, boolean isMaster) {
         this.color = color;
@@ -31,13 +32,12 @@ public class Piece {
     public boolean isMaster() {
         return this.isMaster;
     }
-
-    /**
-     * Método que devolve se a peça ainda está em jogo ou não
-     * @return Booleano true para caso esteja em jogo e false caso contrário
-     */
-    public boolean isAlive() {
-        if (this.color == Color.NONE) return false;
-        else return true;
+    //auxiliar
+    public void kill(){
+        this.isDead = true;
+    }
+    //auxiliar
+    public boolean isDead(){
+        return this.isDead;
     }
 }

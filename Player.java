@@ -6,7 +6,7 @@ public class Player
 { 
     
     private Card[] cards;
-    private Color color;
+    private Color pieceColor;
     private String name;
     private Card card1;
     private Card card2;
@@ -19,7 +19,7 @@ public class Player
     public Player(String name, Color pieceColor, Card[] cards)
     {
         this.name = name;
-        this.color = pieceColor;
+        this.pieceColor = pieceColor;
         this.cards = cards;
     }
 
@@ -33,9 +33,11 @@ public class Player
     public Player(String name, Color pieceColor, Card card1, Card card2)
     {
         this.name = name;
-        this.color = pieceColor;
         this.card1 = card1;
         this.card2 = card2;
+        this.pieceColor = pieceColor;
+        this.cards[0] = card1;
+        this.cards[1] = card2;
     }
 
     /**
@@ -51,9 +53,9 @@ public class Player
      * Método que devolve a cor das peças do jogador
      * @return Enum Color com a cor das peças do jogador
      */
-    public Color getPieceColor()
+    public Color getpieceColor()
     {
-        return this.color;
+        return this.pieceColor;
     }
 
     /**
@@ -73,21 +75,13 @@ public class Player
      */
     protected void swapCard(Card oldCard, Card newCard) throws InvalidCardException
     {
-        try
-        {
-            if(!oldCard.equals(card1) && !oldCard.equals(card2))
-            {
+       if(!oldCard.equals(card1) && !oldCard.equals(card2))
                 throw new InvalidCardException("Amigão você não tem essa carta, escolha outra");
-            }else
-            {
+            else{
                 if(oldCard.equals(card1))
                     this.card1 = newCard;
                 else
                     this.card2 = newCard;
             }
-        }catch(IllegalMovementException erro){
-            System.out.println(erro.getMessage());
-        }
-
     }
 }
