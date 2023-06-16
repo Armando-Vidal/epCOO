@@ -16,7 +16,7 @@ public class GameImpl implements Game {
 
     String nomeAzul = new String();
     String nomeVermelho = new String();
-    Cards [] novoDeck = new Card(); // indices 0 e 1 correspondem às cartas do azul, 2 e 3 às do vermelho e índice 4 é a carta da mesa
+    Card [] novoDeck; // indices 0 e 1 correspondem às cartas do azul, 2 e 3 às do vermelho e índice 4 é a carta da mesa
     Card cartaDaMesa = novoDeck[4];
     Color turno = novoDeck[4].getColor();
 
@@ -32,7 +32,7 @@ public class GameImpl implements Game {
         this.nomeVermelho = nomeVermelho;
 
     }
-    public GameImpl(String nomeAzul, String nomeVermelho, Cards[] novoDeck){
+    public GameImpl(String nomeAzul, String nomeVermelho, Card[] novoDeck){
         this.nomeAzul = nomeAzul;
         this.nomeVermelho = nomeVermelho;
         for (int i =0; i <novoDeck.length; i++)
@@ -131,9 +131,9 @@ public class GameImpl implements Game {
     public Player getBluePlayer(){
         return this.bluePlayer;
     }
-    public void moveAux (Position cardMove, Position currentPos){
+    public void moveAux (Position cardMove, Position currentPos, Piece pieceToMove){
         Position movimento = new Position (currentPos.getRow() + cardMove.getRow(), currentPos.getCol()+currentPos.getCol());
-        spots[currentPos.getRow() + cardMove.getRow()+2][currentPos.getRow() + cardMove.getCol()+2] = new Spot(piecetoMove, movimento);
+        spots[currentPos.getRow() + cardMove.getRow()+2][currentPos.getRow() + cardMove.getCol()+2] = new Spot(pieceToMove, movimento);
     }
     /**
      * Método que move uma peça
@@ -173,7 +173,7 @@ public class GameImpl implements Game {
                             throw new InvalidCardException("Você não tem a carta na sua mão");
                         else {
                             spotToGo.getPiece().kill();
-                            moveAux(cardMove, currentPos);
+                            moveAux(cardMove, currentPos, pieceToMove);
 
                             bluePlayer.swapCard(card, cartaDaMesa);
                             turno = Color.RED;
@@ -184,7 +184,7 @@ public class GameImpl implements Game {
                             throw new InvalidCardException("Você não tem a carta na sua mão");
                         else {
                             spotToGo.getPiece().kill();
-                            moveAux(cardMove, currentPos);
+                            moveAux(cardMove, currentPos, pieceToMove);
 
                             redPlayer.swapCard(card, cartaDaMesa);
                             turno = Color.BLUE;
@@ -210,13 +210,13 @@ public class GameImpl implements Game {
      // LEMBRETE : POSIÇOES DE CARTAS DEVEM SER SOMADAS AS POSICOES ATUAIS 
 
     public boolean checkVictory(Color color){
-        for (int i = 0; i < pecas.length; i++)
+        for (int i = 0; i < pecas.length; i++){
             if (pecas[i].isMaster() && pecas[i].isDead() && !pecas[i].getColor().equals(color))
                 return true;
             for (int j = 0; j <LENGTH; j++)
                 if (!spots[i][j].getPiece().getColor().equals(spots[i][j].getColor()))
                     return true;
-        
+        }
         return false;
     }
 
