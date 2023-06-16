@@ -16,12 +16,19 @@ public class GameImpl implements Game {
 
     String nomeAzul = new String();
     String nomeVermelho = new String();
-    Cards [] novoDeck = new Card();
+    Cards [] novoDeck = new Card(); // indices 0 e 1 correspondem às cartas do azul, 2 e 3 às do vermelho e índice 4 é a carta da mesa
+
+    Player bluePlayer = new Player("Jogador Azul", Color.BLUE, novoDeck[0], novoDeck[1]);
+    Player redPlayer = new Player ("Jogador Vermelho", Color.RED, novoDeck[2], novoDeck[3]);
+
+    //construtores
 
     public GameImpl(){}
+
     public GameImpl(String nomeAzul, String nomeVermelho){
         this.nomeAzul = nomeAzul;
         this.nomeVermelho = nomeVermelho;
+
     }
     public GameImpl(String nomeAzul, String nomeVermelho, Cards[] novoDeck){
         this.nomeAzul = nomeAzul;
@@ -104,7 +111,7 @@ public class GameImpl implements Game {
      * @return Um objeto Card que representa a carta na mesa
      */
     public Card getTableCard(){
-        return null;
+        return novoDeck[4];
     }
 
     /**
