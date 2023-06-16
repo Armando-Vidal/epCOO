@@ -6,6 +6,10 @@ public class GameImpl implements Game {
      * @param position Posição do tabuleiro
      * @return O enum Color que representa a cor da posição
      */
+    public GameImpl(){}
+    public GameImpl(String nomeAzul, String nomeVermelho){}
+    public GameImpl(String nomeAzul, String nomeVermelho, Cards[] novoDeck){}
+
     public final int LENGTH = 5;
 
     Position[][] posicoes = new Position[LENGTH][LENGTH]; //valor -2
@@ -64,7 +68,7 @@ public class GameImpl implements Game {
     public Color getSpotColor(Position position){
         int a = position.getRow();
         int b = position.getCol();
-        Color color = spots[a][b].getColor();
+        Color color = spots[a+2][b+2].getColor();
         return color;
     }
 
@@ -76,7 +80,7 @@ public class GameImpl implements Game {
     public Piece getPiece(Position position){
         int a = position.getRow();
         int b = position.getCol();
-        Color piece = spots[a][b].getPiece();
+        Color piece = spots[a+2][b+2].getPiece();
         return piece;
     }
 
