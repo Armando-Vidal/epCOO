@@ -174,7 +174,12 @@ public class GameImpl implements Game {
                             spotToGo.getPiece().kill();
                             moveAux(cardMove, currentPos, pieceToMove);
 
-                            bluePlayer.swapCard(card, cartaDaMesa);
+                            try{
+                                bluePlayer.swapCard(card, cartaDaMesa);
+                            }catch (Exception e){
+                                System.out.println(e.getMessage());
+                            }
+
                             turno = Color.RED;
                     }
             }
@@ -185,7 +190,12 @@ public class GameImpl implements Game {
                             spotToGo.getPiece().kill();
                             moveAux(cardMove, currentPos, pieceToMove);
 
-                            redPlayer.swapCard(card, cartaDaMesa);
+                             try{
+                                redPlayer.swapCard(card, cartaDaMesa);
+                            }catch (Exception e){
+                                System.out.println(e.getMessage());
+                            }
+                            
                             turno = Color.BLUE;
                         }
             }
