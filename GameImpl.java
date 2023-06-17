@@ -185,6 +185,7 @@ public class GameImpl implements Game {
 
                                 try{
                                     bluePlayer.swapCard(card, cartaDaMesa);
+                                    cartaDaMesa = card;
                                 }catch (InvalidCardException e){
                                     System.out.println(e.getMessage());
                                 }
@@ -204,6 +205,7 @@ public class GameImpl implements Game {
 
                              try{
                                 redPlayer.swapCard(card, cartaDaMesa);
+                                cartaDaMesa = card;
                             }catch (InvalidCardException e){
                                 System.out.println(e.getMessage());
                             }
