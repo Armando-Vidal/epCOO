@@ -6,10 +6,10 @@ public class Player
 { 
     
     private Card[] cards;
-    private Color pieceColor;
+    private Color color;
     private String name;
-    protected Card card1;
-    protected Card card2;
+    private Card card1;
+    private Card card2;
     /**
      * Construtor que define informações básicas do jogador
      * @param name Nome do jogador
@@ -33,11 +33,9 @@ public class Player
     public Player(String name, Color pieceColor, Card card1, Card card2)
     {
         this.name = name;
+        this.pieceColor = pieceColor;
         this.card1 = card1;
         this.card2 = card2;
-        this.pieceColor = pieceColor;
-        this.cards[0] = card1;
-        this.cards[1] = card2;
     }
 
     /**
@@ -53,9 +51,9 @@ public class Player
      * Método que devolve a cor das peças do jogador
      * @return Enum Color com a cor das peças do jogador
      */
-    public Color getpieceColor()
+    public Color getPieceColor()
     {
-        return this.pieceColor;
+        return this.color;
     }
 
     /**
@@ -64,7 +62,7 @@ public class Player
      */
     public Card[] getCards()
     {
-        return this.cards;
+        return this.card[];
     }
 
     /**
@@ -75,13 +73,23 @@ public class Player
      */
     protected void swapCard(Card oldCard, Card newCard) throws InvalidCardException
     {
-       if(!oldCard.equals(card1) && !oldCard.equals(card2))
+        try
+        {
+            if(!oldCard.equals(card1) && !oldCard.equals(card2))
+            {
                 throw new InvalidCardException("Amigão você não tem essa carta, escolha outra");
-            else{
+            }else
+            {
                 if(oldCard.equals(card1))
                     this.card1 = newCard;
                 else
                     this.card2 = newCard;
             }
+            if(!newCard.equals(getTableCard))
+            throw new InvalidCardException("Meu consagrado, você só pode pegar a carta da mesa!");
+        }catch(IllegalMovementException erro){
+            System.out.println(erro.getMessage());
+        }
+
     }
 }
