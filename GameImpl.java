@@ -223,10 +223,45 @@ public class GameImpl implements Game {
      * Método que imprime o tabuleiro no seu estado atual
      * OBS: Esse método é opcional não será utilizado na correção, mas serve para acompanhar os resultados parciais do jogo
      */
-    public void printBoard(){
-        //player vermelho, player azul, cartas na mao de cada jogador, carta na mesa
-        //todos os spots, com sua cor, peça e posição específica
-        //todas as peças, com suas cores específicas
-        
+    public void printBoard() {
+        System.out.println("    0    1    2    3    4");
+        for (int i = 0; i < 5; i++) {
+            System.out.print(i + " ");
+            for (int j = 0; j < 5; j++) {
+                if(this.spots[i][j].color == Color.BLUE) {
+                    Piece piece = this.spots[i][j].piece;
+                    if(piece.isMaster() == true) {
+                        System.out.print("BLUE ");
+                    }
+                    else {
+                        System.out.print("blue ");
+                    }
+                }
+                if(this.spots[i][j].color == Color.RED) {
+                    Piece piece = this.spots[i][j].piece;
+                    if(piece.isMaster() == true) {
+                        System.out.print("RED  ");
+                    }
+                    else {
+                        System.out.print("red  ");
+                    }
+                }
+                if(this.spots[i][j].color == Color.NONE) {
+                    System.out.print("none ");
+                }
+            }
+            System.out.println();
+        }
+
+        //Imprime os players
+        System.out.println("Player Azul");
+        System.out.println(getBluePlayer().card1.name);
+        System.out.println(getBluePlayer().card2.name);
+        System.out.println("Player Vermelho");
+        System.out.println(getRedPlayer().card1.name);
+        System.out.println(getRedPlayer().card2.name);
+
+        //Carta na mesa
+        System.out.println(getTableCard().name);
     }
 }

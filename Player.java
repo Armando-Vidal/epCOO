@@ -8,8 +8,8 @@ public class Player
     private Card[] cards;
     private Color pieceColor;
     private String name;
-    private Card card1;
-    private Card card2;
+    protected Card card1;
+    protected Card card2;
     /**
      * Construtor que define informações básicas do jogador
      * @param name Nome do jogador
