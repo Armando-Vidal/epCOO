@@ -77,11 +77,11 @@ public class Player
     {
        if(!oldCard.equals(card1) && !oldCard.equals(card2))
                 throw new InvalidCardException("Amigão você não tem essa carta, escolha outra");
-            else{
-                if(oldCard.equals(card1))
-                    this.card1 = newCard;
-                else
-                    this.card2 = newCard;
-            }
+        else{
+            if(oldCard.equals(card1))
+                this.card1 = newCard;
+            else
+                this.card2 = newCard;
+        }
     }
 }
