@@ -13,7 +13,7 @@ public class Card {
      */
     String name;
     Color color;
-    Position positions[];
+    Position positions[] = new Position[5];
 
     public static Card tigre;
     public static Card sapo;
@@ -66,15 +66,17 @@ public class Card {
     private Card[] embaralhar(Card[] cartas){
         int tamanho = cartas.length;
         Random aleatorio = new Random();
-
         Card[] cartasJogo = new Card[5];
 
         for (int i = 0; i <tamanho; i++){
+            
             int indiceAleatorio = aleatorio.nextInt(i+1);
 
+           
             Card aux = cartas[indiceAleatorio];
             cartas[indiceAleatorio] = cartas[i];
             cartas[i] = aux;
+            
         }
 
         for (int j = 0; j< cartasJogo.length; j++) 
@@ -109,9 +111,9 @@ public class Card {
         Position[] posicoes_galo = {new Position(0, -1), new Position(1, -1), new Position(0, 1), new Position(-1, 1)};
         galo = new Card("galo", Color.RED, posicoes_galo);
 
-        Card cartas_completas[] = {tigre, sapo, carangueijo, ganso, dragao, coelho, elefante, galo};
+        Card[] cartas_completas = {tigre, sapo, carangueijo, ganso, dragao, coelho, elefante, galo};
 
-        Card cartas[] = embaralhar(cartas_completas);
+        Card[] cartas = embaralhar(cartas_completas);
 
         return cartas;
     }

@@ -5,7 +5,7 @@ package epCOO;
 public class Player
 { 
     
-    private Card[] cards;
+    private Card[] cards = new Card[2];
     private Color color;
     private String name;
     protected Card card1;
@@ -83,9 +83,6 @@ public class Player
                     this.card1 = newCard;
                 else
                     this.card2 = newCard;
-            }
-            if(!newCard.equals(cards[4])){
-                throw new InvalidCardException("Meu consagrado, você só pode pegar a carta da mesa!");
             }
 
     }

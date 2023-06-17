@@ -16,12 +16,12 @@ public class GameImpl implements Game {
 
     String nomeAzul = new String();
     String nomeVermelho = new String();
-    Card [] novoDeck; // indices 0 e 1 correspondem às cartas do azul, 2 e 3 às do vermelho e índice 4 é a carta da mesa
-    Card cartaDaMesa = novoDeck[4];
-    Color turno = novoDeck[4].getColor();
+    Card [] novoDeck = new Card[20]; // indices 0 e 1 correspondem às cartas do azul, 2 e 3 às do vermelho e índice 4 é a carta da mesa
+    Card cartaDaMesa;
+    Color turno;
 
-    Player bluePlayer = new Player("Jogador Azul", Color.BLUE, novoDeck[0], novoDeck[1]);
-    Player redPlayer = new Player ("Jogador Vermelho", Color.RED, novoDeck[2], novoDeck[3]);
+    Player bluePlayer; 
+    Player redPlayer; 
 
     //construtores
 
@@ -37,11 +37,15 @@ public class GameImpl implements Game {
         this.nomeVermelho = nomeVermelho;
         for (int i =0; i <novoDeck.length; i++)
             this.novoDeck[i] = novoDeck[i];
+        turno = novoDeck[4].getColor();
     }
-
+    
 
     public void init(){
     
+        bluePlayer = new Player("Jogador Azul", Color.BLUE, novoDeck[0], novoDeck[1]);
+        redPlayer = new Player ("Jogador Vermelho", Color.RED, novoDeck[2], novoDeck[3]);
+        cartaDaMesa = novoDeck[4];
     //todas as casas
 
      for (int i=0; i < LENGTH; i++){
@@ -145,9 +149,6 @@ public class GameImpl implements Game {
      */
     public void makeMove(Card card, Position cardMove, Position currentPos) throws 
     IncorrectTurnOrderException, IllegalMovementException, InvalidCardException, InvalidPieceException {
-
-        // Position [] cardPositions = card.getPositions(); //exception
-        
         
         if (currentPos.getRow() + cardMove.getRow() > 2 || currentPos.getRow() + cardMove.getRow() < -2)
             throw new IllegalMovementException ("A posição excede a linha");
@@ -176,7 +177,7 @@ public class GameImpl implements Game {
 
                             try{
                                 bluePlayer.swapCard(card, cartaDaMesa);
-                            }catch (Exception e){
+                            }catch (InvalidCardException e){
                                 System.out.println(e.getMessage());
                             }
 
@@ -192,10 +193,10 @@ public class GameImpl implements Game {
 
                              try{
                                 redPlayer.swapCard(card, cartaDaMesa);
-                            }catch (Exception e){
+                            }catch (InvalidCardException e){
                                 System.out.println(e.getMessage());
                             }
-                            
+
                             turno = Color.BLUE;
                         }
             }
@@ -238,8 +239,8 @@ public class GameImpl implements Game {
         for (int i = 0; i < 5; i++) {
             System.out.print(i + " ");
             for (int j = 0; j < 5; j++) {
-                if(this.spots[i][j].color == Color.BLUE) {
-                    Piece piece = this.spots[i][j].piece;
+                if(this.spots[i][j].getColor() == Color.BLUE) {
+                    Piece piece = this.spots[i][j].getPiece();
                     if(piece.isMaster() == true) {
                         System.out.print("BLUE ");
                     }
@@ -247,8 +248,8 @@ public class GameImpl implements Game {
                         System.out.print("blue ");
                     }
                 }
-                if(this.spots[i][j].color == Color.RED) {
-                    Piece piece = this.spots[i][j].piece;
+                if(this.spots[i][j].getColor() == Color.RED) {
+                    Piece piece = this.spots[i][j].getPiece();
                     if(piece.isMaster() == true) {
                         System.out.print("RED  ");
                     }
@@ -264,14 +265,14 @@ public class GameImpl implements Game {
         }
 
         //Imprime os players
-        System.out.println("Player Azul");
-        System.out.println(getBluePlayer().card1.name);
-        System.out.println(getBluePlayer().card2.name);
-        System.out.println("Player Vermelho");
-        System.out.println(getRedPlayer().card1.name);
-        System.out.println(getRedPlayer().card2.name);
+        System.out.println("Player Azul: ");
+        System.out.println(bluePlayer.getCards()[0].getName());
+        System.out.println(bluePlayer.getCards()[1].getName());
+        System.out.println("Player Vermelho: ");
+        System.out.println(redPlayer.getCards()[0].getName());
+        System.out.println(redPlayer.getCards()[1].getName());
 
         //Carta na mesa
-        System.out.println(getTableCard().name);
+        System.out.println(getTableCard().getName());
     }
 }
