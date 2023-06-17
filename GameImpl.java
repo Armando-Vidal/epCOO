@@ -144,7 +144,7 @@ public class GameImpl implements Game {
      * @exception InvalidPieceException Caso uma peça que não está no tabuleiro seja usada
      */
     public void makeMove(Card card, Position cardMove, Position currentPos) throws 
-    IncorrectTurnOrderException, IllegalMovementException, InvalidCardException, InvalidPieceException{
+    IncorrectTurnOrderException, IllegalMovementException, InvalidCardException, InvalidPieceException {
 
         // Position [] cardPositions = card.getPositions(); //exception
         
