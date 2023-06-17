@@ -8,8 +8,6 @@ public class Player
     private Card[] cards = new Card[2];
     private Color color;
     private String name;
-    protected Card card1;
-    protected Card card2;
     /**
      * Construtor que define informações básicas do jogador
      * @param name Nome do jogador
@@ -73,17 +71,21 @@ public class Player
      */
     protected void swapCard(Card oldCard, Card newCard) throws InvalidCardException
     {
-        if(!oldCard.equals(card1) && !oldCard.equals(card2))
+        
+        if(!oldCard.equals(this.cards[0]) && !oldCard.equals(this.cards[1]))
+            throw new InvalidCardException("Amigão você não tem essa carta, escolha outra");
+        else
             {
-                throw new InvalidCardException("Amigão você não tem essa carta, escolha outra");
-            }
-            else
-            {
-                if(oldCard.equals(card1))
-                    this.card1 = newCard;
-                else
-                    this.card2 = newCard;
+                if(oldCard.equals(this.cards[0])){ 
+                    this.cards[0] = newCard; 
+                    newCard = oldCard; 
+                }
+
+                else{
+                    this.cards[1] = newCard; 
+                    newCard = oldCard; 
+                }
             }
 
-    }
+}
 }

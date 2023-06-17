@@ -14,6 +14,7 @@ public class Card {
     String name;
     Color color;
     Position positions[] = new Position[5];
+    boolean cartaDaMesa;
 
     public static Card tigre;
     public static Card sapo;
@@ -58,6 +59,13 @@ public class Card {
         return this.positions;
     }
 
+    public boolean cartaDaMesa(){
+        return this.cartaDaMesa;
+    }
+
+    public void setcartaDaMesa(boolean cartaDaMesa){
+        this.cartaDaMesa = cartaDaMesa;
+    }
     /**
      * Método que cria todas as cartas do jogo, embaralha-as e devolve as 5 que serão utilizadas na partida.
      * @return Vetor de cartas com todas as cartas do jogo
