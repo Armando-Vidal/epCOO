@@ -83,7 +83,6 @@ public class GameImpl implements Game {
     spots [0][2] = new Spot(pecas[2], posicoes[0][2], Color.BLUE); // templo azul
     spots [4][2] = new Spot(pecas[7], posicoes[4][2], Color.RED);  // templo vermelho
 
-    
 
 
 }
@@ -224,5 +223,10 @@ public class GameImpl implements Game {
      * Método que imprime o tabuleiro no seu estado atual
      * OBS: Esse método é opcional não será utilizado na correção, mas serve para acompanhar os resultados parciais do jogo
      */
-    public void printBoard(){}
+    public void printBoard(){
+        //player vermelho, player azul, cartas na mao de cada jogador, carta na mesa
+        //todos os spots, com sua cor, peça e posição específica
+        //todas as peças, com suas cores específicas
+        
+    }
 }
