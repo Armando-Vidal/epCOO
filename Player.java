@@ -73,9 +73,7 @@ public class Player
      */
     protected void swapCard(Card oldCard, Card newCard) throws InvalidCardException
     {
-        try
-        {
-            if(!oldCard.equals(card1) && !oldCard.equals(card2))
+        if(!oldCard.equals(card1) && !oldCard.equals(card2))
             {
                 throw new InvalidCardException("Amigão você não tem essa carta, escolha outra");
             }
@@ -89,9 +87,6 @@ public class Player
             if(!newCard.equals(cards[4])){
                 throw new InvalidCardException("Meu consagrado, você só pode pegar a carta da mesa!");
             }
-        }catch(IllegalMovementException erro){
-            System.out.println(erro.getMessage());
-        }
 
     }
 }
