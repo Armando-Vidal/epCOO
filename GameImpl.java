@@ -167,31 +167,33 @@ public class GameImpl implements Game {
             if (spotToGo.getPosition().getCol() > 2 || spotToGo.getPosition().getCol() < -2)
                 throw new InvalidPieceException("Essa peça não está no tabuleiro");
             else {
-                if (spotToGo.getPiece().getColor().equals(pieceToMove.getColor()))
-                    throw new IllegalMovementException("Já tem uma peça dessa cor nessa posição");
-                else { 
+                if (spotToGo.havePiece())
+                        if (spotToGo.getPiece().getColor().equals(pieceToMove.getColor()))
+                            throw new IllegalMovementException("Já tem uma peça dessa cor nessa posição");
+                        else { 
                 
-                    if (pieceToMove.getColor().equals(Color.BLUE) && turno.equals(Color.BLUE)){
-                        if (bluePlayer.getCards()[0] != card && bluePlayer.getCards()[1] != card)
-                            throw new InvalidCardException("Você não tem a carta na sua mão");
-                        else {
-                            spotToGo.getPiece().kill();
-                            moveAux(cardMove, currentPos, pieceToMove);
+                            if (pieceToMove.getColor().equals(Color.BLUE) && turno.equals(Color.BLUE)){
+                                if (bluePlayer.getCards()[0] != card && bluePlayer.getCards()[1] != card)
+                                    throw new InvalidCardException("Você não tem a carta na sua mão");
+                                else {
+                                    if (spotToGo.havePiece()) spotToGo.getPiece().kill();
+                                    moveAux(cardMove, currentPos, pieceToMove);
 
-                            try{
-                                bluePlayer.swapCard(card, cartaDaMesa);
-                            }catch (InvalidCardException e){
-                                System.out.println(e.getMessage());
-                            }
+                                try{
+                                    bluePlayer.swapCard(card, cartaDaMesa);
+                                }catch (InvalidCardException e){
+                                    System.out.println(e.getMessage());
+                                }
 
-                            turno = Color.RED;
-                    }
+                                turno = Color.RED;
+                }
             }
+        }
                     if (pieceToMove.getColor().equals(Color.RED) && turno.equals(Color.RED)){
                         if (redPlayer.getCards()[0] != card && redPlayer.getCards()[1] != card)
                             throw new InvalidCardException("Você não tem a carta na sua mão");
                         else {
-                            spotToGo.getPiece().kill();
+                            if (spotToGo.havePiece()) spotToGo.getPiece().kill();
                             moveAux(cardMove, currentPos, pieceToMove);
 
                              try{
@@ -207,7 +209,6 @@ public class GameImpl implements Game {
                 throw new IncorrectTurnOrderException ("Não é o turno do azul");
             else if (pieceToMove.getColor().equals(Color.RED) && turno.equals(Color.BLUE))
                 throw new IncorrectTurnOrderException ("Não é o turno do vermelho");
-                }
             }
         }
     }
@@ -269,14 +270,16 @@ public class GameImpl implements Game {
         }
 
         //Imprime os players
-        System.out.println("Player Azul: ");
-        System.out.println(bluePlayer.getCards()[0].getName());
+        System.out.print("Player Azul: ");
+        System.out.print(bluePlayer.getCards()[0].getName());
+        System.out.print(", ");
         System.out.println(bluePlayer.getCards()[1].getName());
-        System.out.println("Player Vermelho: ");
-        System.out.println(redPlayer.getCards()[0].getName());
+        System.out.print("Player Vermelho: ");
+        System.out.print(redPlayer.getCards()[0].getName());
+        System.out.print(", ");
         System.out.println(redPlayer.getCards()[1].getName());
 
         //Carta na mesa
-        System.out.println(getTableCard().getName());
+        System.out.println("Carta da mesa: " + getTableCard().getName());
     }
 }
