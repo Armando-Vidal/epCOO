@@ -13,9 +13,11 @@ public class Spot {
     public Piece piece;
     public Position pos;
     public Color color;
+    public boolean havePiece = false;
     
     public Spot(Piece piece, Position pos, Color color) {
         this.piece = piece;
+        havePiece = true;
         this.pos = pos;
         this.color = color;
     }
@@ -27,6 +29,7 @@ public class Spot {
      */
     public Spot(Piece piece, Position pos) {
         this.piece = piece;
+        havePiece = true;
         this.pos = pos;
     }
 
@@ -60,6 +63,10 @@ public class Spot {
      */
     public Color getColor() {
         return this.color;
+    }
+
+    public boolean havePiece(){
+        return this.havePiece;
     }
 
     /**

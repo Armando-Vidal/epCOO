@@ -10,9 +10,9 @@ public class GameImpl implements Game {
 
     public final int LENGTH = 5;
 
-    Position[][] posicoes = new Position[LENGTH][LENGTH]; //valor -2
-    Spot[][] spots = new Spot[LENGTH][LENGTH]; //valor -2
-    Piece[] pecas = new Piece[10];
+    Position[][] posicoes;
+    Spot[][] spots;
+    Piece[] pecas;
 
     String nomeAzul = new String();
     String nomeVermelho = new String();
@@ -42,7 +42,10 @@ public class GameImpl implements Game {
     
 
     public void init(){
-    
+         
+        posicoes = new Position[LENGTH][LENGTH]; //valor -2
+        spots  = new Spot[LENGTH][LENGTH]; //valor -2
+        pecas = new Piece[10];
         bluePlayer = new Player("Jogador Azul", Color.BLUE, novoDeck[0], novoDeck[1]);
         redPlayer = new Player ("Jogador Vermelho", Color.RED, novoDeck[2], novoDeck[3]);
         cartaDaMesa = novoDeck[4];
@@ -239,7 +242,9 @@ public class GameImpl implements Game {
         for (int i = 0; i < 5; i++) {
             System.out.print(i + " ");
             for (int j = 0; j < 5; j++) {
-                if(this.spots[i][j].getColor() == Color.BLUE) {
+               if (this.spots[i][j].havePiece())
+               {
+                if(this.spots[i][j].getPiece().getColor() == Color.BLUE) {
                     Piece piece = this.spots[i][j].getPiece();
                     if(piece.isMaster() == true) {
                         System.out.print("BLUE ");
@@ -248,7 +253,7 @@ public class GameImpl implements Game {
                         System.out.print("blue ");
                     }
                 }
-                if(this.spots[i][j].getColor() == Color.RED) {
+                if(this.spots[i][j].getPiece().getColor() == Color.RED) {
                     Piece piece = this.spots[i][j].getPiece();
                     if(piece.isMaster() == true) {
                         System.out.print("RED  ");
@@ -257,9 +262,8 @@ public class GameImpl implements Game {
                         System.out.print("red  ");
                     }
                 }
-                if(this.spots[i][j].color == Color.NONE) {
-                    System.out.print("none ");
-                }
+            }
+            else System.out.print("none ");
             }
             System.out.println();
         }
