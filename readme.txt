@@ -4,4 +4,4 @@ O trabalho a seguir foi construído por
 
 Guilherme Fernandes Aliaga - nº USP 13672432
 Armando Augusto Marchini Vidal - 
-Marcos Vilela Rezende Júnior - 
+Marcos Vilela Rezende Júnior - nº USP 13729806
