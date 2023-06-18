@@ -3,5 +3,5 @@ Exercício Programa de Coumputação Orientada a Obejetos, matéria minstrada na
 O trabalho a seguir foi construído por 
 
 Guilherme Fernandes Aliaga - nº USP 13672432
-Armando Augusto Marchini Vidal - 
+Armando Augusto Marchini Vidal - nº USP 13673072
 Marcos Vilela Rezende Júnior - nº USP 13729806

@@ -25,32 +25,23 @@ public class Main{
         Color turno = jogo1.getTurno();
 
         if (turno.equals(Color.BLUE))
-           // try {
+   
                 jogo1.makeMove(playerBlue.getCards()[0], playerBlue.getCards()[0].getPositions()[0], new Position(-2,0));
-           // }catch (Exception e){
-            //    System.out.println("erro: " + e.getMessage());
-            //}
+        
         if (turno.equals(Color.RED))
-           // try {
+ 
                 jogo1.makeMove(playerRed.getCards()[0], playerRed.getCards()[0].getPositions()[0], new Position(2, 0));
-          //  }catch (Exception e){
-          //      System.out.println("erro: " + e.getMessage());
-          //  }
+       
 
         jogo1.printBoard();
         
         if (jogo1.getTurno().equals(Color.BLUE))
-           // try {
+   
                 jogo1.makeMove(playerBlue.getCards()[1], playerBlue.getCards()[1].getPositions()[0], new Position(-2,1));
-           // }catch (Exception e){
-            //    System.out.println("erro: " + e.getMessage());
-            //}
+        
         if (jogo1.getTurno().equals(Color.RED))
-           // try {
+     
                 jogo1.makeMove(playerRed.getCards()[1], playerRed.getCards()[1].getPositions()[0], new Position(2, 1));
-          //  }catch (Exception e){
-          //      System.out.println("erro: " + e.getMessage());
-          //  }
 
         jogo1.printBoard();
 
