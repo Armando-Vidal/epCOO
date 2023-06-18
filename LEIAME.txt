@@ -5,3 +5,9 @@ O trabalho a seguir foi construído por
 Guilherme Fernandes Aliaga - nº USP 13672432
 Armando Augusto Marchini Vidal - nº USP 13673072
 Marcos Vilela Rezende Júnior - nº USP 13729806
+
+o código é rodado por linha de comando do modo abaixo:
+
+javac *.java
+
+java Main
