@@ -29,7 +29,7 @@ public class Spot {
      */
     public Spot(Piece piece, Position pos) {
         this.piece = piece;
-        havePiece = true;
+        this.havePiece = true;
         this.pos = pos;
     }
 
@@ -75,8 +75,8 @@ public class Spot {
      * @exception IllegalMovementException Caso o espaço já esteja ocupado por uma peça da mesma cor
      */
     protected void occupySpot(Piece piece) throws IllegalMovementException {
-        if (this.havePiece)
-            if(this.piece.getColor().equals(piece.getColor())){
+        if (this.havePiece){
+            if(this.piece.getColor().equals(piece.getColor()))
                 throw new IllegalMovementException("Esse lugar está ocupado por um aliado! Escolha outro!");
         }else{
                 this.piece = piece;

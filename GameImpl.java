@@ -138,10 +138,6 @@ public class GameImpl implements Game {
     public Player getBluePlayer(){
         return this.bluePlayer;
     }
-    public void moveAux (Position cardMove, Position currentPos, Piece pieceToMove){
-        
-
-    }
     /**
      * Método que move uma peça
      * @param card A carta de movimento que será usada
@@ -153,6 +149,7 @@ public class GameImpl implements Game {
      */
     public void makeMove(Card card, Position cardMove, Position currentPos) throws 
     IncorrectTurnOrderException, IllegalMovementException, InvalidCardException, InvalidPieceException {
+
         
         if (currentPos.getRow() + cardMove.getRow() > 2 || currentPos.getRow() + cardMove.getRow() < -2)
             throw new IllegalMovementException ("A posição excede a linha");
@@ -162,6 +159,9 @@ public class GameImpl implements Game {
 
             Piece pieceToMove = spots[currentPos.getRow()+2][currentPos.getCol()+2].getPiece();
             Spot spotToGo = spots[currentPos.getRow() + cardMove.getRow()+2][currentPos.getCol() + cardMove.getCol()+2];
+
+           // if(pieceToMove.getColor().equals(Color.BLUE))
+            //    cardMove = new Position (cardMove.getRow()*(-1), cardMove.getCol()*(-1));
 
             if (spotToGo.getPosition().getRow() > 2 || spotToGo.getPosition().getRow() < -2)
                 throw new InvalidPieceException("Essa peça não está no tabuleiro");
@@ -180,7 +180,7 @@ public class GameImpl implements Game {
                                     throw new InvalidCardException("Você não tem a carta na sua mão");
                                 else {
                                     if (spotToGo.havePiece()) spotToGo.getPiece().kill();
-                                    spots[currentPos.getRow() + cardMove.getRow()+2][currentPos.getCol() + cardMove.getCol()+2].occupySpot(pieceToMove);
+                                    spotToGo.occupySpot(pieceToMove);
                                     spots[currentPos.getRow()][currentPos.getCol()].releaseSpot();
 
                                 try{
@@ -200,7 +200,7 @@ public class GameImpl implements Game {
                         else {
                             if (spotToGo.havePiece()) spotToGo.getPiece().kill();
                             //Position movimento = new Position (currentPos.getRow() + cardMove.getRow(), currentPos.getCol()+currentPos.getCol());
-                            spots[currentPos.getRow() + cardMove.getRow()+2][currentPos.getCol() + cardMove.getCol()+2].occupySpot(pieceToMove);
+                            spotToGo.occupySpot(pieceToMove);
                             spots[currentPos.getRow()+2][currentPos.getCol()+2].releaseSpot();
 
                              try{
