@@ -150,6 +150,16 @@ public class GameImpl implements Game {
     public void makeMove(Card card, Position cardMove, Position currentPos) throws 
     IncorrectTurnOrderException, IllegalMovementException, InvalidCardException, InvalidPieceException {
 
+        Piece pieceToMove = spots[currentPos.getRow()+2][currentPos.getCol()+2].getPiece();
+
+            int blueRow, blueCol;
+
+            if(pieceToMove.getColor().equals(Color.BLUE)){
+               blueRow = cardMove.getRow()*(-1);
+               blueCol = cardMove.getCol()*(-1);
+               cardMove.setRowCol(blueRow, blueCol);
+            }
+
         
         if (currentPos.getRow() + cardMove.getRow() > 2 || currentPos.getRow() + cardMove.getRow() < -2)
             throw new IllegalMovementException ("A posição excede a linha");
@@ -157,16 +167,21 @@ public class GameImpl implements Game {
             throw new IllegalMovementException ("A posição excede a coluna");
         else{
 
-            Piece pieceToMove = spots[currentPos.getRow()+2][currentPos.getCol()+2].getPiece();
+            
+
             Spot spotToGo = spots[currentPos.getRow() + cardMove.getRow()+2][currentPos.getCol() + cardMove.getCol()+2];
 
-           // if(pieceToMove.getColor().equals(Color.BLUE))
-            //    cardMove = new Position (cardMove.getRow()*(-1), cardMove.getCol()*(-1));
+           
 
             if (spotToGo.getPosition().getRow() > 2 || spotToGo.getPosition().getRow() < -2)
                 throw new InvalidPieceException("Essa peça não está no tabuleiro");
             if (spotToGo.getPosition().getCol() > 2 || spotToGo.getPosition().getCol() < -2)
                 throw new InvalidPieceException("Essa peça não está no tabuleiro");
+            if (pieceToMove.getColor().equals(Color.BLUE) && turno.equals(Color.RED))
+                throw new IncorrectTurnOrderException ("Não é o turno do azul");
+            if (pieceToMove.getColor().equals(Color.RED) && turno.equals(Color.BLUE))
+                throw new IncorrectTurnOrderException ("Não é o turno do vermelho");
+                
             else {
                 if (spotToGo.havePiece())
                         {
@@ -181,7 +196,7 @@ public class GameImpl implements Game {
                                 else {
                                     if (spotToGo.havePiece()) spotToGo.getPiece().kill();
                                     spotToGo.occupySpot(pieceToMove);
-                                    spots[currentPos.getRow()][currentPos.getCol()].releaseSpot();
+                                    spots[currentPos.getRow()+2][currentPos.getCol()+2].releaseSpot();
 
                                 try{
                                     bluePlayer.swapCard(card, cartaDaMesa);
@@ -213,10 +228,7 @@ public class GameImpl implements Game {
                             turno = Color.BLUE;
                         }
             }
-                else if (pieceToMove.getColor().equals(Color.BLUE) && turno.equals(Color.RED))
-                    throw new IncorrectTurnOrderException ("Não é o turno do azul");
-                else if (pieceToMove.getColor().equals(Color.RED) && turno.equals(Color.BLUE))
-                    throw new IncorrectTurnOrderException ("Não é o turno do vermelho");
+               
             }
         }
     }

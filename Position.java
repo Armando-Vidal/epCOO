@@ -30,4 +30,9 @@ public class Position {
     public int getCol() {
         return this.col;
     }
+
+    public void setRowCol(int row, int col){
+        this.row = row;
+        this.col = col;
+    }
 }
