@@ -72,11 +72,10 @@ public class Card {
      */
 
     private Card[] embaralhar(Card[] cartas){
-        int tamanho = cartas.length;
         Random aleatorio = new Random();
         Card[] cartasJogo = new Card[5];
 
-        for (int i = 0; i <tamanho; i++){
+        for (int i = 0; i <cartas.length; i++){
             
             int indiceAleatorio = aleatorio.nextInt(i+1);
 

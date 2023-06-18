@@ -10,8 +10,7 @@ public class Main{
 
         Card [] deckReal = new Card[5];
         
-        for (int i =0; i < deckReal.length; i++)
-            deckReal[i] = deck.createCards()[i];
+            deckReal = deck.createCards();
 
         Player playerBlue = new Player ("Armando", Color.BLUE, deckReal[0], deckReal[1]);
         Player playerRed = new Player ("Marcola", Color.RED, deckReal[2], deckReal[3]);
