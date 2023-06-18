@@ -23,7 +23,7 @@ public class Main{
 
         jogo1.printBoard();
 
-        Color turno = jogo1.getTableCard().getColor();
+        Color turno = jogo1.getTurno();
 
         if (turno.equals(Color.BLUE))
            // try {
@@ -40,15 +40,15 @@ public class Main{
 
         jogo1.printBoard();
         
-        if (turno.equals(Color.BLUE))
+        if (jogo1.getTurno().equals(Color.BLUE))
            // try {
-                jogo1.makeMove(playerBlue.getCards()[1], playerBlue.getCards()[1].getPositions()[0], new Position(-2,0));
+                jogo1.makeMove(playerBlue.getCards()[1], playerBlue.getCards()[1].getPositions()[0], new Position(-2,1));
            // }catch (Exception e){
             //    System.out.println("erro: " + e.getMessage());
             //}
-        if (turno.equals(Color.RED))
+        if (jogo1.getTurno().equals(Color.RED))
            // try {
-                jogo1.makeMove(playerRed.getCards()[1], playerRed.getCards()[1].getPositions()[0], new Position(2, 0));
+                jogo1.makeMove(playerRed.getCards()[1], playerRed.getCards()[1].getPositions()[0], new Position(2, 1));
           //  }catch (Exception e){
           //      System.out.println("erro: " + e.getMessage());
           //  }

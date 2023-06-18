@@ -138,6 +138,10 @@ public class GameImpl implements Game {
     public Player getBluePlayer(){
         return this.bluePlayer;
     }
+
+    public Color getTurno(){
+        return this.turno;
+    }
     /**
      * Método que move uma peça
      * @param card A carta de movimento que será usada
@@ -177,11 +181,11 @@ public class GameImpl implements Game {
                 throw new InvalidPieceException("Essa peça não está no tabuleiro");
             if (spotToGo.getPosition().getCol() > 2 || spotToGo.getPosition().getCol() < -2)
                 throw new InvalidPieceException("Essa peça não está no tabuleiro");
-            if (pieceToMove.getColor().equals(Color.BLUE) && turno.equals(Color.RED))
+            if (pieceToMove.getColor().equals(Color.BLUE) && this.turno.equals(Color.RED))
                 throw new IncorrectTurnOrderException ("Não é o turno do azul");
-            if (pieceToMove.getColor().equals(Color.RED) && turno.equals(Color.BLUE))
+            if (pieceToMove.getColor().equals(Color.RED) && this.turno.equals(Color.BLUE))
                 throw new IncorrectTurnOrderException ("Não é o turno do vermelho");
-                
+
             else {
                 if (spotToGo.havePiece())
                         {
@@ -205,7 +209,7 @@ public class GameImpl implements Game {
                                     System.out.println(e.getMessage());
                                 }
 
-                                turno = Color.RED;
+                                this.turno = Color.RED;
                 }
             }
         }
@@ -225,7 +229,7 @@ public class GameImpl implements Game {
                                 System.out.println(e.getMessage());
                             }
 
-                            turno = Color.BLUE;
+                            this.turno = Color.BLUE;
                         }
             }
                
